@@ -58,12 +58,14 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
-          <div className="mr-3">
+          <div className="mr-4">
             <LanguageSwitcher />
           </div>
           <button 

@@ -17,6 +17,19 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Argan Portfolio | Developer | Gamer | Streamer | Editor",
   description: "Portfolio website showcasing development, gaming, streaming, and editing skills",
+  icons: {
+    icon: [
+      { 
+        rel: "icon",
+        url: "/favicon.ico",
+        sizes: "any" 
+      },
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml"
+      }
+    ]
+  }
 };
 
 export default function RootLayout({

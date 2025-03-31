@@ -13,7 +13,7 @@ import {
   SiJavascript, SiTypescript, SiNextdotjs, 
   SiTailwindcss, SiAdobepremierepro, SiAdobephotoshop, 
   SiAdobeaftereffects, SiAdobeillustrator,
-  SiDialogflow, SiRasa, SiOpenai
+  SiDialogflow, SiRasa, SiOpenai, SiLine
 } from 'react-icons/si';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -49,6 +49,7 @@ export default function SkillsSection() {
     chatbot: [
       { name: 'WhatsApp Bot', icon: <FaWhatsapp />, level: 95 },
       { name: 'Telegram Bot', icon: <FaTelegram />, level: 90 },
+      { name: 'Line Bot', icon: <SiLine />, level: 78 },
       { name: 'Discord Bot', icon: <FaDiscord />, level: 85 },
       { name: 'Dialogflow', icon: <SiDialogflow />, level: 80 },
       { name: 'OpenAI API', icon: <SiOpenai />, level: 92 },
@@ -61,7 +62,7 @@ export default function SkillsSection() {
       { name: 'PlayStation', icon: <FaPlaystation />, level: 90 },
       { name: 'FPS Games', icon: <FaGamepad />, level: 95 },
       { name: 'Strategy Games', icon: <FaGamepad />, level: 85 },
-      { name: 'Game Streaming', icon: <FaInstagram />, level: 90 },
+      { name: 'Game Streaming', icon: <FaTiktok />, level: 90 },
       { name: 'Commentary', icon: <FaYoutube />, level: 85 },
     ],
     content: [

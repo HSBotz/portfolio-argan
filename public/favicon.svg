@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    svg {
+      background: #0f172a;
+    }
+    path {
+      fill: #60a5fa;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        background: #0f172a;
+      }
+      path {
+        fill: #60a5fa;
+      }
+    }
+  </style>
+  <path d="M50 10 L85 90 H70 L60 65 H40 L30 90 H15 L50 10 Z M50 30 L40 55 H60 L50 30 Z" />
+</svg> 

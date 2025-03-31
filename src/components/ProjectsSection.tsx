@@ -146,18 +146,18 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id as ProjectCategory)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-full font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all ${
                 activeCategory === category.id
                   ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20'
                   : 'bg-[#1e293b] text-gray-300 hover:bg-[#273549]'
               }`}
             >
-              {category.icon && <span>{category.icon}</span>}
+              {category.icon && <span className="text-base sm:text-lg">{category.icon}</span>}
               <span>{category.label}</span>
             </button>
           ))}
@@ -166,7 +166,7 @@ export default function ProjectsSection() {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {filteredProjects.map((project, index) => (
             <motion.div

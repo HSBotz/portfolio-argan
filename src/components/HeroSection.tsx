@@ -129,30 +129,30 @@ export default function HeroSection() {
             <h2 className="text-xl md:text-2xl font-medium text-blue-400">{t('hero.hello')}</h2>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-4">
               <span className="gradient-text">Argan</span>
             </h1>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <p className="text-2xl md:text-3xl font-medium text-gray-300 mb-6">
+            <p className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-300 mb-4 sm:mb-6">
               {t('hero.tagline')}
             </p>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-gray-400 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
               {t('hero.description')}
             </p>
           </motion.div>
-          <motion.div variants={itemVariants} className="flex gap-4 justify-center lg:justify-start">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
             <a
               href="#contact"
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full text-white font-medium transition-transform hover:scale-105 hover:shadow-lg"
+              className="px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full text-white font-medium transition-transform hover:scale-105 hover:shadow-lg text-sm sm:text-base"
             >
               {t('hero.contactMe')}
             </a>
             <a
               href="#projects"
-              className="px-6 py-3 bg-transparent border border-blue-500 rounded-full text-blue-400 font-medium transition-all hover:bg-blue-500/10"
+              className="px-5 py-2.5 sm:px-6 sm:py-3 bg-transparent border border-blue-500 rounded-full text-blue-400 font-medium transition-all hover:bg-blue-500/10 text-sm sm:text-base"
             >
               {t('hero.seeMyWork')}
             </a>

@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaEnvelope, FaInstagram, FaGithub, FaYoutube, FaTiktok } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function ContactSection() {
+  // Supaya tidak terjadi hydration mismatch, gunakan useEffect untuk inisialisasi state
+  const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,6 +21,28 @@ export default function ContactSection() {
 
   const { ref } = useInView();
   const { t } = useLanguage();
+
+  // Mount effect untuk menghindari hydration error
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Add function to handle clipboard errors
+  const handleCopyError = (e: ErrorEvent) => {
+    if (e.message?.includes('clipboard')) {
+      console.warn('Copy to clipboard not supported in this browser', e);
+      // Prevent the error from bubbling up
+      e.preventDefault();
+    }
+  };
+
+  // Add effect to handle clipboard errors
+  useEffect(() => {
+    window.addEventListener('error', handleCopyError);
+    return () => {
+      window.removeEventListener('error', handleCopyError);
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -68,38 +92,38 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section id="contact" className="py-20 relative" suppressHydrationWarning>
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-48 h-48 bg-blue-600/5 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-0 right-0 w-48 h-48 bg-purple-600/5 rounded-full blur-3xl -z-10"></div>
       
-      <div className="bg-[#121212] py-20">
+      <div className="bg-[#121212] py-12 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={ref}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 sm:mb-4">
               {t('contact.title')}
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
               {t('contact.subtitle')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             <div
               className="w-full"
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">{t('contact.formTitle')}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">{t('contact.formTitle')}</h3>
               
               {submitted ? (
                 <div
-                  className="bg-green-500/20 border border-green-500/30 rounded-lg p-6 text-center"
+                  className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 sm:p-6 text-center"
                 >
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="h-12 w-12 mx-auto text-green-400 mb-4" 
+                    className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-green-400 mb-3 sm:mb-4" 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
@@ -111,20 +135,20 @@ export default function ContactSection() {
                       d="M5 13l4 4L19 7" 
                     />
                   </svg>
-                  <h4 className="text-xl font-semibold text-white mb-2">{t('contact.success')}</h4>
-                  <p className="text-gray-300">{t('contact.successDetail')}</p>
+                  <h4 className="text-lg sm:text-xl font-semibold text-white mb-2">{t('contact.success')}</h4>
+                  <p className="text-gray-300 text-sm sm:text-base">{t('contact.successDetail')}</p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 px-6 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg text-green-400 transition-colors"
+                    className="mt-4 sm:mt-6 px-4 sm:px-6 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg text-green-400 transition-colors text-sm sm:text-base"
                   >
                     {t('contact.sendAnother')}
                   </button>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ) : mounted ? (
+                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" suppressHydrationWarning>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">{t('contact.name')}</label>
+                      <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">{t('contact.name')}</label>
                       <input
                         type="text"
                         id="name"
@@ -132,11 +156,12 @@ export default function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                        suppressHydrationWarning
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">{t('contact.email')}</label>
+                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">{t('contact.email')}</label>
                       <input
                         type="email"
                         id="email"
@@ -144,7 +169,8 @@ export default function ContactSection() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                        suppressHydrationWarning
                       />
                     </div>
                   </div>
@@ -157,6 +183,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      suppressHydrationWarning
                     >
                       <option value="">{t('contact.selectSubject')}</option>
                       <option value="project">{t('contact.projectInquiry')}</option>
@@ -175,6 +202,7 @@ export default function ContactSection() {
                       required
                       rows={5}
                       className="w-full px-4 py-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      suppressHydrationWarning
                     ></textarea>
                   </div>
                   {error && (
@@ -218,6 +246,14 @@ export default function ContactSection() {
                     </button>
                   </div>
                 </form>
+              ) : (
+                <div className="p-6 text-gray-400 text-center">
+                  <svg className="animate-spin h-8 w-8 mx-auto mb-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p>Loading form...</p>
+                </div>
               )}
             </div>
 

@@ -35,22 +35,22 @@ export default function Navbar() {
         scrolled ? 'bg-[#0f172a]/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="container mx-auto px-4 py-3 sm:py-4 flex justify-between items-center">
         <Link 
           href="#hero" 
-          className="text-2xl font-bold text-white"
+          className="text-xl sm:text-2xl font-bold text-white"
         >
           <span className="gradient-text">Argan Portfolio</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center">
-          <ul className="flex space-x-8 mr-8">
+          <ul className="flex space-x-6 sm:space-x-8 mr-6 sm:mr-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link 
                   href={link.href}
-                  className="text-gray-300 hover:text-white transition-colors relative group"
+                  className="text-gray-300 hover:text-white transition-colors relative group text-sm lg:text-base"
                 >
                   {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
@@ -63,14 +63,14 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
-          <div className="mr-4">
+          <div className="mr-3">
             <LanguageSwitcher />
           </div>
           <button 
             className="text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            {isMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
         </div>
 

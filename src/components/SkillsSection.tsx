@@ -101,18 +101,18 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as SkillTab)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-full font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all ${
                 activeTab === tab.id
                   ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20'
                   : 'bg-[#1e293b] text-gray-300 hover:bg-[#273549]'
               }`}
             >
-              <span>{tab.icon}</span>
+              <span className="text-base sm:text-lg">{tab.icon}</span>
               <span>{tab.label}</span>
             </button>
           ))}
@@ -125,7 +125,7 @@ export default function SkillsSection() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
         >
           {skills[activeTab].map((skill, index) => (
             <motion.div

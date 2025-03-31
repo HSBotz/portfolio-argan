@@ -77,16 +77,16 @@ export default function DocumentationSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="bg-[#1e293b] border border-white/5 rounded-lg p-6 hover:border-blue-500/30 transition-all hover:shadow-lg"
+              className="bg-[#1e293b] border border-white/5 rounded-lg p-4 sm:p-6 hover:border-blue-500/30 transition-all hover:shadow-lg"
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#0f172a] rounded-lg text-2xl">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-[#0f172a] rounded-lg text-xl sm:text-2xl">
                   {section.icon}
                 </div>
                 <div>
-                  <h3 className="text-xl font-medium text-white mb-3">{section.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3">{section.title}</h3>
                   {typeof section.description === 'string' ? (
-                    <p className="text-gray-400">{section.description}</p>
+                    <p className="text-sm sm:text-base text-gray-400">{section.description}</p>
                   ) : (
                     section.description
                   )}

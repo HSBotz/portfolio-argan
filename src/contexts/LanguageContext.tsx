@@ -107,6 +107,9 @@ const translations = {
     'docs.contact.description': 'The contact form sends messages directly to my WhatsApp. Fill in your information, and after clicking "Send Message," WhatsApp will open with your message ready to send.',
     'docs.projects.title': 'Viewing Projects',
     'docs.projects.description': 'You can filter projects by category using the buttons above the project grid. Click on a project to view more details or visit the live version.',
+
+    // Footer Section
+    'footer.rights': 'All rights reserved.',
   },
   id: {
     // Navigation
@@ -194,6 +197,9 @@ const translations = {
     'docs.contact.description': 'Formulir kontak mengirim pesan langsung ke WhatsApp saya. Isi informasi Anda, dan setelah mengklik "Kirim Pesan," WhatsApp akan terbuka dengan pesan Anda siap untuk dikirim.',
     'docs.projects.title': 'Melihat Proyek',
     'docs.projects.description': 'Anda dapat memfilter proyek berdasarkan kategori menggunakan tombol di atas grid proyek. Klik pada proyek untuk melihat detail lebih lanjut atau kunjungi versi langsung.',
+
+    // Footer Section
+    'footer.rights': 'Semua hak dilindungi undang-undang.',
   }
 };
 
